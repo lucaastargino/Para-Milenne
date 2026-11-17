@@ -1,0 +1,286 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uma surpresa para Millene</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(ellipse at center, #66503a, #241b14);
+  font-family: Georgia, serif;
+  color: #49351f;
+  padding: 20px;
+}
+
+.container {
+  width: 100%;
+  max-width: 620px;
+  text-align: center;
+}
+
+.subtitle {
+  color: #e6cda5;
+  font-size: 12px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+h1 {
+  color: #f0dfbd;
+  font-size: clamp(35px, 8vw, 55px);
+  font-weight: normal;
+  font-style: italic;
+  margin-bottom: 35px;
+}
+
+.envelope-area {
+  perspective: 1000px;
+  width: min(340px, 90vw);
+  height: 225px;
+  margin: 0 auto;
+  position: relative;
+  cursor: pointer;
+}
+
+.envelope {
+  position: absolute;
+  inset: 0;
+  background: #b78d5b;
+  box-shadow: 0 15px 40px #0007;
+  border-radius: 3px;
+}
+
+.envelope::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(140deg, #cba777, #9d7448);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  z-index: 3;
+}
+
+.flap {
+  position: absolute;
+  inset: 0;
+  background: #d2b17e;
+  clip-path: polygon(0 0, 100% 0, 50% 58%);
+  transform-origin: top;
+  transition: transform 1s;
+  z-index: 5;
+}
+
+.letter {
+  position: absolute;
+  background: #f7ebd2;
+  width: 86%;
+  height: 88%;
+  left: 7%;
+  bottom: 5%;
+  padding: 20px;
+  transition: transform 1.2s;
+  z-index: 2;
+}
+
+.letter strong {
+  display: block;
+  font-size: 23px;
+  font-style: italic;
+  font-weight: normal;
+  margin-top: 25px;
+}
+
+.pocket {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(35deg, #a77c4b 50%, transparent 50%);
+  z-index: 4;
+}
+
+.seal {
+  position: absolute;
+  z-index: 6;
+  top: 48%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 57px;
+  height: 57px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #f4d7b0;
+  font-size: 25px;
+  background: radial-gradient(circle, #bd6c57, #74352d);
+  box-shadow: 0 3px 10px #0005;
+  transition: opacity .5s;
+}
+
+.envelope-area.opened .flap {
+  transform: rotateX(180deg);
+}
+
+.envelope-area.opened .letter {
+  transform: translateY(-125px);
+}
+
+.envelope-area.opened .seal {
+  opacity: 0;
+}
+
+.hint {
+  color: #e5cda6;
+  margin-top: 45px;
+  font-size: 13px;
+  letter-spacing: 2px;
+}
+
+#message {
+  display: none;
+  background: #f0dfbd;
+  padding: clamp(25px, 6vw, 45px);
+  margin-top: 85px;
+  box-shadow: 0 15px 40px #0006;
+  border: 1px solid #b18b58;
+  animation: appear 2s ease;
+}
+
+#message.visible { display: block; }
+
+#message h2 {
+  font-size: 34px;
+  font-weight: normal;
+  font-style: italic;
+}
+
+#message p {
+  font-size: 17px;
+  line-height: 1.9;
+  text-align: left;
+}
+
+.signature {
+  font-size: 23px;
+  font-style: italic;
+  margin-top: 30px;
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="subtitle">Uma correspondência especial</div>
+
+  <h1>Uma surpresa para você</h1>
+
+  <div class="envelope-area" id="envelope">
+    <div class="envelope"></div>
+
+    <div class="letter">
+      <span>Uma carta para</span>
+      <strong>Millene Assis Teixeira</strong>
+      <span>Com muito carinho...</span>
+    </div>
+
+    <div class="flap"></div>
+    <div class="pocket"></div>
+    <div class="seal">♥</div>
+  </div>
+
+  <div class="hint" id="hint">
+    TOQUE NO SELO PARA ABRIR
+  </div>
+
+  <div id="message">
+    <div style="font-size:25px;color:#a77b3d">✦ ✧ ✦</div>
+
+    <h2>Millene,</h2>
+
+    <p>
+      Quero agradecer por tudo, por cada momento,
+      cada sorriso, cada conversa e por todas as
+      coisas boas que você trouxe para os meus dias.
+    </p>
+
+    <p>
+      Este pequeno presente foi preparado com muito
+      carinho, pensando em você e em tudo aquilo que,
+      de alguma forma, tornou nossa história especial.
+    </p>
+
+    <p>
+      Espero, de coração, que ao abrir esta caixinha
+      você tenha sentido um pouquinho de todo o carinho
+      que coloquei em cada detalhe. E que este pequeno
+      gesto tenha conseguido fazer você feliz,
+      nem que seja por alguns instantes.
+    </p>
+
+    <p>
+      Às vezes, as palavras não conseguem expressar
+      tudo, mas espero que este presente consiga
+      transmitir um pouco do que sinto.
+    </p>
+
+    <div class="signature">
+      Com carinho, Lucas. ♥
+    </div>
+
+    <div style="margin-top:25px;color:#a77b3d">
+      ✧ Uma lembrança feita especialmente para você ✧
+    </div>
+  </div>
+
+</div>
+
+<script>
+const envelope = document.getElementById("envelope");
+const message = document.getElementById("message");
+const hint = document.getElementById("hint");
+
+envelope.addEventListener("click", function() {
+  if (envelope.classList.contains("opened")) return;
+
+  envelope.classList.add("opened");
+  hint.textContent = "SUA CARTA ESTÁ SE ABRINDO...";
+
+  setTimeout(function() {
+    message.classList.add("visible");
+    hint.textContent = "COM CARINHO, PARA VOCÊ";
+
+    setTimeout(function() {
+      message.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+    }, 100);
+
+  }, 1100);
+});
+</script>
+
+</body>
+</html>
