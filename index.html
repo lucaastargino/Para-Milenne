@@ -15,8 +15,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background:
-    radial-gradient(ellipse at center, #66503a, #241b14);
+  background: radial-gradient(ellipse at center, #66503a, #241b14);
   font-family: Georgia, serif;
   color: #49351f;
   padding: 20px;
@@ -59,25 +58,24 @@ h1 {
   background: #b78d5b;
   box-shadow: 0 15px 40px #0007;
   border-radius: 3px;
+  z-index: 1;
 }
 
-.envelope::before {
-  content: "";
+/* Corpo frontal do envelope */
+.pocket {
   position: absolute;
   inset: 0;
-  background: linear-gradient(140deg, #cba777, #9d7448);
-  clip-path: polygon(0 0, 100% 0, 50% 100%);
-  z-index: 3;
+  background: linear-gradient(35deg, #a77c4b 50%, #bd9564 50%);
+  clip-path: polygon(0 0, 50% 58%, 100% 0, 100% 100%, 0 100%);
+  z-index: 4;
 }
 
-.flap {
+/* Área que mantém a carta escondida */
+.letter-window {
   position: absolute;
   inset: 0;
-  background: #d2b17e;
-  clip-path: polygon(0 0, 100% 0, 50% 58%);
-  transform-origin: top;
-  transition: transform 1s;
-  z-index: 5;
+  overflow: hidden;
+  z-index: 2;
 }
 
 .letter {
@@ -88,7 +86,8 @@ h1 {
   left: 7%;
   bottom: 5%;
   padding: 20px;
-  transition: transform 1.2s;
+  transform: translateY(0);
+  transition: transform 1.2s ease;
   z-index: 2;
 }
 
@@ -100,13 +99,18 @@ h1 {
   margin-top: 25px;
 }
 
-.pocket {
+/* Aba superior */
+.flap {
   position: absolute;
   inset: 0;
-  background: linear-gradient(35deg, #a77c4b 50%, transparent 50%);
-  z-index: 4;
+  background: #d2b17e;
+  clip-path: polygon(0 0, 100% 0, 50% 58%);
+  transform-origin: top;
+  transition: transform 1s ease;
+  z-index: 5;
 }
 
+/* Selo */
 .seal {
   position: absolute;
   z-index: 6;
@@ -189,7 +193,6 @@ h1 {
 </head>
 
 <body>
-
 <div class="container">
 
   <div class="subtitle">Uma correspondência especial</div>
@@ -197,17 +200,21 @@ h1 {
   <h1>Uma surpresa para você</h1>
 
   <div class="envelope-area" id="envelope">
+
     <div class="envelope"></div>
 
-    <div class="letter">
-      <span>Uma carta para</span>
-      <strong>Millene Assis Teixeira</strong>
-      <span>Com muito carinho...</span>
+    <div class="letter-window">
+      <div class="letter">
+        <span>Uma carta para</span>
+        <strong>Millene Assis Teixeira</strong>
+        <span>Com muito carinho...</span>
+      </div>
     </div>
 
-    <div class="flap"></div>
     <div class="pocket"></div>
+    <div class="flap"></div>
     <div class="seal">♥</div>
+
   </div>
 
   <div class="hint" id="hint">
